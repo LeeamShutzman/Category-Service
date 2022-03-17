@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,4 +38,15 @@ public class CatergoryController {
 	public Category addCategory(@RequestBody Category category) {
 		return categoryService.add(category);
 	}
+	
+	public void deleteById(long categoryId){
+		categoryService.deleteById(categoryId);	
+	}
+	
+	
+	@GetMapping("/category{id}")
+	public Optional<Category> getCategoryById(long categoryId){
+		return categoryService.findById(categoryId);
+	}
+	
 }
