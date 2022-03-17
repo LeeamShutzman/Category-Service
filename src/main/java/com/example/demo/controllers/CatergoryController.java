@@ -3,19 +3,19 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.Category;
 import com.example.demo.services.CategoryService;
 
 @RestController
-@RequestMapping("categories") //localhost:portNum/categories
+@RequestMapping("categories")
 public class CatergoryController {
+
 	private CategoryService categoryService;
+
+	/***************************************************************/
+	//Constructors, Getters, and Setters
 
 	public CatergoryController(CategoryService categoryService) {
 		super();
@@ -29,24 +29,32 @@ public class CatergoryController {
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
-	
+
+	/***************************************************************/
+	//Service endpoint mapping
+
+	//Add a Category
+	@PostMapping("/add") //localhost:portNum/categories/add
+	public Category addCategory(@RequestBody Category category) {
+		return categoryService.addCategory(category);
+	}
+
+	//View all Categories
 	@GetMapping("/all") //localhost:portNum/categories/all
 	public List<Category> getAllCategories(){
 		return categoryService.findAll();
 	}
-	@PostMapping("/add") //localhost:portNum/categories/add
-	public Category addCategory(@RequestBody Category category) {
-		return categoryService.add(category);
+
+	//View Category by ID
+	@GetMapping("/getCategoryByID") //localhost:portNum/categories/getCategoryByID?categoryID=#
+	public Optional<Category> getCategoryById(@RequestParam long categoryId){
+		return categoryService.findByCategoryId(categoryId);
 	}
-	
-	public void deleteById(long categoryId){
-		categoryService.deleteById(categoryId);	
-	}
-	
-	
-	@GetMapping("/category{id}")
-	public Optional<Category> getCategoryById(long categoryId){
-		return categoryService.findById(categoryId);
+
+	//Delete a Category
+	@DeleteMapping("/delete") //localhost:portNum/categories/delete?categoryID=#
+	public void deleteById(@RequestParam long categoryId){
+		categoryService.deleteById(categoryId);
 	}
 	
 }

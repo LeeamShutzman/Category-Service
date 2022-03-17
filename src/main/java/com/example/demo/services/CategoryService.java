@@ -11,8 +11,12 @@ import com.example.demo.repositories.CategoryRepository;
 
 @Service
 public class CategoryService {
+
 	private CategoryRepository categoryRepository;
-	
+
+	/***************************************************************/
+	//Constructors, Getters, and Setters
+
 	public CategoryService(CategoryRepository categoryRepository) {
 		super();
 		this.categoryRepository = categoryRepository;
@@ -25,19 +29,28 @@ public class CategoryService {
 	public void setCategoryRepository(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
 	}
+
+	/***************************************************************/
+	//Repository Method Calls
+
+	//Add a Category
+	public Category addCategory(Category category) {
+		return categoryRepository.save(category);
+	}
+
+	//View all Categories
 	public List<Category> findAll(){
 		return categoryRepository.findAll();
 	}
-	public Category add(Category category) {
-		return categoryRepository.save(category);
+
+	//View Category by ID
+	public Optional<Category> findByCategoryId(long categoryId){
+		return categoryRepository.findById(categoryId);
 	}
-	
+
+	//Delete a Category
 	public void deleteById(long categoryId){
 		categoryRepository.deleteById(categoryId);;
 	}
-	
-	public Optional<Category> findById(long categoryId){
-		return categoryRepository.findById(categoryId);
-	}
-	
+
 }
