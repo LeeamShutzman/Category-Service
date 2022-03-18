@@ -12,7 +12,7 @@ public class Category {
 
 	@Id
 	@JoinColumn(name="category_id", referencedColumnName="CATEGORYID")
-	private int categoryID;
+	private long categoryID;
 	@Column(name="CATEGORYNAME")
 	private String categoryName;
 	@Column(name="DESCRIPTION")
@@ -21,16 +21,16 @@ public class Category {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Category(int categoryID, String categoryName, String description) {
+	public Category(long categoryID, String categoryName, String description) {
 		super();
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
 		this.description = description;
 	}
-	public int getCategoryID() {
+	public long getCategoryID() {
 		return categoryID;
 	}
-	public void setCategoryID(int categoryID) {
+	public void setCategoryID(long categoryID) {
 		this.categoryID = categoryID;
 	}
 	public String getCategoryName() {

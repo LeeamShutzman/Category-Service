@@ -44,12 +44,12 @@ public class CategoryService {
 	}
 
 	//View Category by ID
-	public Optional<Category> findByCategoryId(long categoryId){
+	public Optional<Category> findByCategoryID(long categoryId){
 		return categoryRepository.findById(categoryId);
 	}
 
 	//Delete a Category
-	public void deleteById(long categoryId){
+	public void deleteCategory(long categoryId){
 		categoryRepository.deleteById(categoryId);;
 	}
 

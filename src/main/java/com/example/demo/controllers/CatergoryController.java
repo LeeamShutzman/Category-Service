@@ -47,14 +47,14 @@ public class CatergoryController {
 
 	//View Category by ID
 	@GetMapping("/getCategoryByID") //localhost:portNum/categories/getCategoryByID?categoryID=#
-	public Optional<Category> getCategoryById(@RequestParam long categoryId){
-		return categoryService.findByCategoryId(categoryId);
+	public Optional<Category> getCategoryById(@RequestParam long categoryID){
+		return categoryService.findByCategoryID(categoryID);
 	}
 
 	//Delete a Category
 	@DeleteMapping("/delete") //localhost:portNum/categories/delete?categoryID=#
-	public void deleteById(@RequestParam long categoryId){
-		categoryService.deleteById(categoryId);
+	public void deleteCategory(@RequestParam long categoryID){
+		categoryService.deleteCategory(categoryID);
 	}
 	
 }
