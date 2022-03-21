@@ -1,6 +1,8 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -52,5 +54,23 @@ public class CategoryService {
 	public void deleteCategory(long categoryId){
 		categoryRepository.deleteById(categoryId);;
 	}
+	
+	 public Category updateCategory(long categoryID, Category category) {
+			try {
+				Category temp = categoryRepository.findById(categoryID).get();
+				if(Objects.nonNull(category.getCategoryName()) && !"".equalsIgnoreCase(category.getCategoryName())){
+					temp.setCategoryName(category.getCategoryName());
+				}
+				if(Objects.nonNull(category.getDescription()) && !"".equalsIgnoreCase(category.getDescription()))
+				{
+					temp.setDescription(category.getDescription());
+				}
+				return categoryRepository.save(temp);
+			}
+			catch (NoSuchElementException e){
+				System.out.println("No category with that ID was found");
+				return new Category();
+			}
+	    }
 
 }

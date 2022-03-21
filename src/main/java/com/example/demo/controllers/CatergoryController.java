@@ -57,4 +57,9 @@ public class CatergoryController {
 		categoryService.deleteCategory(categoryID);
 	}
 	
+	@PutMapping("/update") //localhost:portNum/orders/update
+	public Category updateCategory(@RequestParam long categoryID, @RequestBody Category category) {
+		return categoryService.updateCategory(categoryID, category);
+	}
+	
 }
