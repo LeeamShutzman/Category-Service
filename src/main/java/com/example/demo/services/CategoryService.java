@@ -52,7 +52,7 @@ public class CategoryService {
     //Delete a Category
     public void deleteCategory(long categoryId) {
         categoryRepository.deleteById(categoryId);
-        ;
+
     }
 
     //Update a Category
